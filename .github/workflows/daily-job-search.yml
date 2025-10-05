@@ -21,11 +21,10 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
+          pip install -r daily-job-search/requirements.txt
 
       - name: Run daily job search script
         env:
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
-        run: |
-          python fetch_jobs.py
+        working-directory: daily-job-search
+        run: python fetch_jobs.py
